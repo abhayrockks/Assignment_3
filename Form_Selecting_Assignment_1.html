@@ -1,0 +1,204 @@
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+  <style>
+    span {
+      display: none;
+    }
+  </style>
+
+
+  <script>
+    $(document).ready(function () {
+      document.getElementById("myCheckbox").addEventListener("click", function (event) {
+        event.preventDefault()
+      });
+      document.getElementById("myAnchor").addEventListener("click", function (event) {
+        event.preventDefault()
+      });
+    });
+  </script>
+
+  <script>
+    $(document).ready(function () {
+      $("ul.checkb input[type=checkbox]").on("change", function () {
+
+        var checkboxValue = $(this).prop("checked");
+
+        //call the recursive function for the first time
+        decideParentsValue($(this));
+
+        //Compulsorily apply check value Down in DOM
+        $(this).closest("li").find(".children input[type=checkbox]").prop("checked", checkboxValue);
+
+
+      });
+
+      //the recursive function 
+      function decideParentsValue(me) {
+        var shouldTraverseUp = false;
+        var checkedCount = 0;
+        var myValue = me.prop("checked");
+
+        //inspect my siblings to decide parents value
+        $.each($(me).closest(".children").children('li'), function () {
+          var checkbox = $(this).children("input[type=checkbox]");
+          if ($(checkbox).prop("checked")) {
+            checkedCount = checkedCount + 1;
+          }
+        });
+
+        //if I am checked and my siblings are also checked do nothing
+        //OR
+        //if I am unchecked and my any sibling is checked do nothing
+        if ((myValue == true && checkedCount == 1) || (myValue == false && checkedCount == 0)) {
+          shouldTraverseUp = true;
+        }
+        if (shouldTraverseUp == true) {
+          var inputCheckBox = $(me).closest(".children").siblings("input[type=checkbox]");
+          inputCheckBox.prop("checked", me.prop("checked"));
+          decideParentsValue(inputCheckBox);
+        }
+
+      }
+    });
+  </script>
+
+</head>
+
+<body>
+  <h1>Form</h1>
+
+  <form id="Form" [formGroup]="fg">
+    <div class="form-group">
+      <label>Name:</label>
+      <input id="name" class="form-control" type="text" [formControl]="fg.controls['username']">
+      <span>Necessary Field</span>
+    </div><br>
+
+    <div class="form-group">
+      <label>Agree to terms and conditions</label>
+      <input id="cbox" class="form-control" type="checkbox" [formControl]="fg.controls['check']">
+      <span class="error" id="not_checked"></span>
+    </div><br>
+
+    Try to check this box: <input type="checkbox" id="myCheckbox">
+    <a id="myAnchor" href="https://excellencetechnologies.in/">Excellence Technologies</a><br>
+
+    <ul class="control unstyled checkb">
+      <li id="social_media">
+        <input type="checkbox" id="social_media">
+        <label>Social Media</label>
+        <ul class="children">
+
+          <li id="social_media_1">
+            <input type="checkbox" id="social_media_1">
+            <label>Social review sites</label>
+          </li>
+
+          <li id="social_media_2">
+            <input type="checkbox" id="social_media_2">
+            <label>Sharing economy networks</label>
+          </li>
+
+          <li id="social_media_3">
+            <input type="checkbox" id="social_media_3">
+            <label>Social networking sites</label>
+            <ul class="children">
+
+              <li id="social_media_3_1">
+                <input type="checkbox" id="social_media_3_1">
+                <label>Facebook</label>
+              </li>
+
+
+              <li id="social_media_3_2">
+                <input type="checkbox" id="social_media_3_2">
+                <label>Twitters</label>
+              </li>
+
+              <li id="social_media_3_3">
+                <input type="checkbox" id="social_media_3_3">
+                <label>LinkedIn</label>
+              </li>
+            </ul>
+          </li>
+
+          <li id="social_media_4">
+            <input type="checkbox" id="social_media_4">
+            <labe>Video hosting sites</label>
+          </li>
+
+          <li id="social_media_5">
+            <input type="checkbox" id="social_media_5">
+            <label>Image sharing sites</label>
+            <ul class="children">
+
+              <li id="social_media_5_1">
+                <input type="checkbox" id="social_media_5_1">
+                <label>Instagram</label>
+              </li>
+
+              <li id="social_media_5_2">
+                <input type="checkbox" id="social_media_5_2">
+                <label>Snapchat</label>
+              </li>
+            </ul>
+          </li>
+
+          <li id="social_media_6">
+            <input type="checkbox" id="social_media_6">
+            <label>Community blogs</label>
+          </li>
+
+          <li id="social_media_7">
+            <input type="checkbox" id="social_media_7">
+            <label>Discussion sites</label>
+          </li>
+        </ul>
+      </li>
+
+      <li id="vehicle">
+        <input type="checkbox" id="vehicle">
+        <label>Vehicles</label>
+        <ul class="children">
+
+          <li id="vehicle_1">
+            <input type="checkbox" id="vehicle_1">
+            <label>2-Wheeler</label>
+            <ul class="children">
+
+              <li id="vehicle_1_1">
+                <input type="checkbox" id="vehicle_1_1">
+                <label>Bike</label>
+              </li>
+
+              <li id="vehicle_1_2">
+                <input type="checkbox" id="vehicle_1_2">
+                <label>Scooter</label>
+              </li>
+            </ul>
+          </li>
+
+          <li id="vehicle_2">
+            <input type="checkbox" id="vehicle_2">
+            <label>3-Wheeler</label>
+          </li>
+
+          <li id="vehicle_3">
+            <input type="checkbox" id="vehicle_3">
+            <label>4-Wheeler</label>
+          </li>
+        </ul>
+      </li>
+    </ul>
+
+  </form>
+
+  <script>
+    $("#name").focus(function () {
+      $(this).next("span").css("display", "inline").fadeOut(2000);
+    });
+  </script>
+
+</body>
