@@ -1,92 +1,88 @@
 <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 
-<script>
-  $(document).ready(function() {
-    $("Form").submit(function(){
+  <script>
+    $(document).ready(function () {
+      $("Form").submit(function () {
 
-      var mail = $("#Email").val();
-      var password = $("#pass").val();
-      var confirm_password = $("#cpass").val();
+        var mail = $("#Email").val();
+        var password = $("#pass").val();
+        var confirm_password = $("#cpass").val();
 
-    if(password != confirm_password)
-     {
-       alert("Password should be same");
-     }
-    if (mail == null || mail =="")
-      {
-      document.getElementById("email_error").style.color = 'red';
-      document.getElementById("email_error").innerHTML = 'Please enter your email';
-      return false;
-      }
-    if ($("#cbox").is(":not(:checked)")) 
-     {
-      document.getElementById("not_checked").style.color = 'red';
-      document.getElementById("not_checked").innerHTML = 'Please Agree To Terms and Conditions';
-      return false;
-     }
-   else
-    {
-    alert("Submitted");
-    }
-     
+        if (password != confirm_password) {
+          alert("Password should be same");
+        }
+        if (mail == null || mail == "") {
+          document.getElementById("email_error").style.color = 'red';
+          document.getElementById("email_error").innerHTML = 'Please enter your email';
+          return false;
+        }
+        if ($("#cbox").is(":not(:checked)")) {
+          document.getElementById("not_checked").style.color = 'red';
+          document.getElementById("not_checked").innerHTML = 'Please Agree To Terms and Conditions';
+          return false;
+        }
+        else {
+          alert("Submitted");
+        }
+
+      });
     });
-  });
- </script>
+  </script>
 
-<script>
- $(document).ready(function() {
-    document.getElementById("myCheckbox").addEventListener("click", function(event){
-    event.preventDefault()
-  });
-  document.getElementById("myAnchor").addEventListener("click", function(event){
-  event.preventDefault()
-});
-});
+  <script>
+    $(document).ready(function () {
+      document.getElementById("myCheckbox").addEventListener("click", function (event) {
+        event.preventDefault()
+      });
+      document.getElementById("myAnchor").addEventListener("click", function (event) {
+        event.preventDefault()
+      });
+    });
   </script>
 
 </head>
 
 <body>
-<h1>Form</h1>
-    
+  <h1>Form</h1>
+
   <form id="Form" [formGroup]="fg">
-      <div class="form-group">
-        <label>Name:</label>
-        <input class="form-control" type="text"  [formControl]="fg.controls['username']">
-      </div><br>
-
-      <div class="form-group">
-        <label>Email:</label>      
-        <input id="Email" class="form-control" type="email"  [formControl]="fg.controls['mail']">
-        <span class="error" id="email_error"></span>
-      </div><br>
-     
-      <div class="form-group">
-        <label>Password:</label>
-      <input id="pass" class="form-control" type="text"  [formControl]="fg.controls['password']">
+    <div class="form-group">
+      <label>Name:</label>
+      <input class="form-control" type="text" [formControl]="fg.controls['username']">
     </div><br>
 
     <div class="form-group">
-        <label>Confirm Password:</label>
-      <input id="cpass" class="form-control" type="text"  [formControl]="fg.controls['confirmpassword']">
+      <label>Email:</label>
+      <input id="Email" class="form-control" type="email" [formControl]="fg.controls['mail']">
+      <span class="error" id="email_error"></span>
     </div><br>
-    
+
     <div class="form-group">
-        <label>Agree to terms and conditions</label>
-      <input id="cbox" class="form-control" type="checkbox"  [formControl]="fg.controls['check']">
+      <label>Password:</label>
+      <input id="pass" class="form-control" type="text" [formControl]="fg.controls['password']">
+    </div><br>
+
+    <div class="form-group">
+      <label>Confirm Password:</label>
+      <input id="cpass" class="form-control" type="text" [formControl]="fg.controls['confirmpassword']">
+    </div><br>
+
+    <div class="form-group">
+      <label>Agree to terms and conditions</label>
+      <input id="cbox" class="form-control" type="checkbox" [formControl]="fg.controls['check']">
       <span class="error" id="not_checked"></span>
     </div><br>
 
-      <div class="form-group">
-        <button id="btn" type="submit" value="submit">Submit</button>
-      </div>
-     
-    </form>
+    <div class="form-group">
+      <button id="btn" type="submit" value="submit">Submit</button>
+    </div>
 
-    Try to check this box: <input type="checkbox" id="myCheckbox">
-    <a id="myAnchor" href="https://excellencetechnologies.in/">Excellence Technologies</a><br>
+  </form>
 
-    
+  Try to check this box: <input type="checkbox" id="myCheckbox"><br>
+  Link Disabled: <a id="myAnchor" href="https://excellencetechnologies.in/">Excellence Technologies</a><br>
+
+
 </body>
