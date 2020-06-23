@@ -1,0 +1,34 @@
+<html>
+
+<head>
+
+    <script>
+
+        var detail = [{
+            "Person1": [
+                { "Name": "Abhay", "dob": "12-Oct" }],
+
+            "Person2": [
+                { "Name": "Arun", "dob": "10-Dec" }],
+
+            "Person3": [
+                { "Name": "Ashish", "dob": "7-March" }]
+        }]
+
+    </script>
+
+</head>
+
+<body>
+
+    <script>
+        document.writeln("<h2>Details</h2>");
+        document.writeln("<table border = '1' width = 100 >");
+        document.writeln("<tr><td><b>Name</b></td><td width = 50>" + detail[0].Person1[0].Name + "</td>" + "<td width = 50>" + detail[0].Person2[0].Name + "</td>" + "<td width = 50>" + detail[0].Person3[0].Name + "</td></tr>");
+        document.writeln("<tr><td><b>Dob</b></td><td width = 50>" + detail[0].Person1[0].dob + "</td>" + "<td width = 50>" + detail[0].Person2[0].dob + "</td>" + "<td width = 50>" + detail[0].Person3[0].dob + "</td></tr>");
+        document.writeln("</table>");
+
+    </script>
+</body>
+
+</html>
