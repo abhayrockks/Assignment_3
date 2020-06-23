@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <script>
+
+        var object = {
+            "Fname": "Abhay",
+            "LName": "Mehta",
+            "Dob": "12-Oct",
+        };
+
+        var object_array = [{
+            "Names": [
+                { "Fname": "Abhay" },
+                { "Sname": "Saurabh" },
+                { "Tname": "Vishal" }
+            ],
+
+            "Games": [
+                {
+                    "Fgame": "Football",
+                    "Sgame": "Cricket",
+                    "Tgame": "Tennis"
+                }
+            ]
+        }]
+    </script>
+</head>
+
+<body>
+    <p>Click to show details of common element in other Json Object</p>
+
+    <button onclick="show()">Click</button><br>
+
+    <script>
+        function show() {
+            if (object.Fname != object_array[0].Names[0].Fname) {
+                document.writeln("Unmatched")
+            }
+            else {
+                document.writeln( object.Fname + "Matched");
+                document.writeln(object.LName);
+                document.writeln(object.Dob);
+            }
+        }
+    </script>
+
+
+    <script>
+        document.writeln(object_array[0].Names[0].Fname + "plays" + object_array[0].Games[0].Fgame);
+        document.writeln(object_array[0].Names[1].Sname + "plays" + object_array[0].Games[0].Sgame);
+        document.writeln(object_array[0].Names[2].Tname + "plays" + object_array[0].Games[0].Tgame)
+
+    </script>
+
+
+</body>
+
+</html>
