@@ -1,0 +1,50 @@
+<head>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+
+</head>
+
+<body>
+
+  <div id="file">
+    <button id="remove">Remove</button>
+    <input type="text" placeholder="Note">
+    <input type="file">
+   
+  </div>
+  <button id="add">Add another</button>
+  
+  <script>
+  var div = document.getElementById('file');
+
+function add() {
+  var input = document.createElement('input'), x = document.createElement("Input"),
+    button = document.createElement('button');
+  
+    x.setAttribute("type", "file");
+  input.placeholder = "Note";
+  button.innerHTML = 'Remove';
+  // attach onlick event handler to remove button
+  button.onclick = remove;
+  
+  div.appendChild(button);
+  div.appendChild(input);
+  div.appendChild(x);
+}
+
+function remove() {
+  // remove this button and its input
+  div.removeChild(this.previousElementSibling.previousElementSibling);
+  div.removeChild(this.previousElementSibling);
+  div.removeChild(this);
+}
+
+// attach onclick event handler to add button
+document.getElementById('add').addEventListener('click', add);
+// attach onclick event handler to 1st remove button
+document.getElementById('remove').addEventListener('click', remove);
+  </script>
+  
+  </body>
